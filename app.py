@@ -10,8 +10,8 @@ st.title("Sistema de Previsão de Risco de Inadimplência - By Makson Vinicio")
 st.markdown("Este é um Aplicativo utilizado para exibir a solução de Ciência de Dados para o problema de predição de Risco de Inadimplência.")
 
 
-pickle_in = open('classifier.pkl', 'rb')
-classifier = pickle.load(pickle_in)
+with open('model.pkl', 'rb') as file:
+    classifier = pickle.load(file)
 
 
 @st.cache()
