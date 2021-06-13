@@ -16,6 +16,7 @@
 # Projetos
 ## Classification
 - [Análise de emissão de gases de efeito estufa](https://github.com/MaksonViini/Green-House-Gases)
+- [Classificação de Inadimplência](https://github.com/MaksonViini/Credit-Risc)
 - [Previsão e análise de preços de casas de Seattle](https://github.com/MaksonViini/Project-Price-houses)
 - [Maratona Alura - Enem](https://github.com/MaksonViini/Data-Science-Projects/tree/master/Project-Alura-ENEM2019)
 - [Maratona Behind The Code - Algar](https://github.com/MaksonViini/Data-Science-Projects/tree/master/Project-Behind-The-Code-Algar)
