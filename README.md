@@ -1,7 +1,7 @@
 # Projeto Previsão de Risco de Inadimplência
 
 ### Links
-- [Link dados](https://www.kaggle.com/caesarlupum/risco-de-credito?select=teste.csv)
+- [Link dos dados](https://www.kaggle.com/caesarlupum/risco-de-credito?select=teste.csv)
 - [Link do projeto em produção](https://credit-risc.herokuapp.com/)
 
 ## Principais ferramentas:
