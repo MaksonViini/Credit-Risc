@@ -63,9 +63,9 @@ def main():
         'Número de dependentes: ', min_value=0)
 
     if st.button('Predict'):
-        util_linhas_inseguras = 0.5
+        util_linhas_inseguras = 0.8
 
-        razao_debito = 0.5
+        razao_debito = 0.8
 
         result = predict(util_linhas_inseguras, idade, vezes_passou_de_30_59_dias, razao_debito, salario_mensal,
                          numero_linhas, numero_vezes_passou_90_dias, numero_emprestimos_imobiliarios, numero_de_vezes_que_passou_60_89_dias, numero_de_dependentes)
