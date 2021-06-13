@@ -1,4 +1,4 @@
-# Projeto Previsao de Risco de Inadimplência
+# Projeto Previsão de Risco de Inadimplência
 
 ### Links
 - [Link dados](https://www.kaggle.com/caesarlupum/risco-de-credito?select=teste.csv)
