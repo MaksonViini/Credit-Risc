@@ -1,2 +1,6 @@
 archive
 dsdsd.py
+
+*.log
+
+catboost_info
