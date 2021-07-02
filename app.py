@@ -11,10 +11,7 @@ st.title("Sistema de Previsão de Risco de Inadimplência - By Makson Vinicio")
 st.markdown("Este é um Aplicativo utilizado para exibir a solução de Ciência de Dados para o problema de predição de Risco de Inadimplência.")
 
 
-# with open('', 'rb') as file:
-
 classifier = load_model('best_model')
-# classifier = pickle.load('best_model.pkl')
 print(classifier)
 
 
@@ -27,7 +24,6 @@ def predict(df):
         score = result['Score'][0]
         result = result['Label'][0]
 
-        
         if result:
             return 'Crédito Negado', score
         else:
@@ -82,9 +78,7 @@ def main():
     if st.button('Predict'):
 
         result, score = predict(features_df)
-        # st.write(score)
         st.success('{} com {}% de certeza'.format(result, round(score*100)))
-
 
 
 if __name__ == '__main__':
