@@ -9,3 +9,4 @@ streamlit==0.82.0
 pickle-mixin
 pickle5
 lightgbm
+pycaret

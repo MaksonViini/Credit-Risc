@@ -1,6 +1,7 @@
 # Aqui vai ter o APP
+from pycaret.classification import load_model, predict_model
 import streamlit as st
-import pickle
+import pandas as pd
 
 
 # título
@@ -10,24 +11,27 @@ st.title("Sistema de Previsão de Risco de Inadimplência - By Makson Vinicio")
 st.markdown("Este é um Aplicativo utilizado para exibir a solução de Ciência de Dados para o problema de predição de Risco de Inadimplência.")
 
 
-with open('best_model.pkl', 'rb') as file:
-    classifier = pickle.load(file)
+# with open('', 'rb') as file:
+
+classifier = load_model('best_model')
+# classifier = pickle.load('best_model.pkl')
+print(classifier)
 
 
 @st.cache()
-def predict(util_linhas_inseguras, idade, vezes_passou_de_30_59_dias, razao_debito, salario_mensal,
-            numero_linhas, numero_vezes_passou_90_dias, numero_emprestimos_imobiliarios, numero_de_vezes_que_passou_60_89_dias, numero_de_dependentes):
+def predict(df):
 
     if predict:
-        result = classifier.predict([[util_linhas_inseguras, idade, vezes_passou_de_30_59_dias, razao_debito, salario_mensal,
-                                      numero_linhas, numero_vezes_passou_90_dias, numero_emprestimos_imobiliarios, numero_de_vezes_que_passou_60_89_dias, numero_de_dependentes]])
+        result = predict_model(classifier, data=df)
 
-        result = result[0]
+        score = result['Score'][0]
+        result = result['Label'][0]
 
+        
         if result:
-            return 'Crédito Negado'
+            return 'Crédito Negado', score
         else:
-            return 'Crédito Aprovado'
+            return 'Crédito Aprovado', score
 
 
 def main():
@@ -62,14 +66,25 @@ def main():
     numero_de_dependentes = st.number_input(
         'Número de dependentes: ', min_value=0)
 
+    util_linhas_inseguras = 0.8
+
+    razao_debito = 0.8
+
+    features = {'util_linhas_inseguras': util_linhas_inseguras, 'idade': idade,
+                'vezes_passou_de_30_59_dias': vezes_passou_de_30_59_dias,
+                'razao_debito': razao_debito, 'salario_mensal': salario_mensal,
+                'numero_linhas_crdto_aberto': numero_linhas, 'numero_vezes_passou_90_dias': numero_vezes_passou_90_dias,
+                'numero_emprestimos_imobiliarios': numero_emprestimos_imobiliarios,
+                'numero_de_vezes_que_passou_60_89_dias': numero_de_vezes_que_passou_60_89_dias, 'numero_de_dependentes': numero_de_dependentes}
+
+    features_df = pd.DataFrame([features])
+
     if st.button('Predict'):
-        util_linhas_inseguras = 0.8
 
-        razao_debito = 0.8
+        result, score = predict(features_df)
+        # st.write(score)
+        st.success('{} com {}% de certeza'.format(result, round(score*100)))
 
-        result = predict(util_linhas_inseguras, idade, vezes_passou_de_30_59_dias, razao_debito, salario_mensal,
-                         numero_linhas, numero_vezes_passou_90_dias, numero_emprestimos_imobiliarios, numero_de_vezes_que_passou_60_89_dias, numero_de_dependentes)
-        st.success('{}'.format(result))
 
 
 if __name__ == '__main__':
