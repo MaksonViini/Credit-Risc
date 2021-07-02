@@ -12,11 +12,10 @@ st.markdown("Este é um Aplicativo utilizado para exibir a solução de Ciência
 
 
 classifier = load_model('best_model')
-print(classifier)
 
 
 @st.cache()
-def predict(df):
+def predict(classifier, df):
 
     if predict:
         result = predict_model(classifier, data=df)
@@ -77,7 +76,7 @@ def main():
 
     if st.button('Predict'):
 
-        result, score = predict(features_df)
+        result, score = predict(classifier, features_df)
         st.success('{} com {}% de certeza'.format(result, round(score*100)))
 
 
